@@ -1,0 +1,24 @@
+services:
+  ml-dev:
+    build:
+      context: .
+      args:
+      - uid=1001
+      - gid=1001
+      - username=mluser
+      - project_name=mlexpenv
+    container_name: ml-dev
+    image: ml-dev-image
+    shm_size: '24gb'
+    tty: true
+    volumes:
+      - $PWD:/home/mluser/mlexpenv
+    command: '/bin/bash'
+    network_mode: host
+    #runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]

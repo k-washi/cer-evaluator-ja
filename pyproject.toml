@@ -1,0 +1,32 @@
+[project]
+name = "ml-env"
+version = "0.1.0"
+description = "ml-env"
+
+authors = [{ name = "k-washi", email = "bandad.kw@gmail.com" }]
+
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "numpy==1.26.4",
+    "torch>=2.6.0",
+    "torchaudio>=2.6.0"
+]
+
+
+[tool.uv]
+dev-dependencies = [
+    "pre-commit>=4.0.0",
+    "pyright>=1.1.389",
+    "pytest>=8.3.3",
+    "ruff>=0.6.9",
+]
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu126", marker = "platform_system != 'Darwin'" }]
+torchaudio = [{ index = "pytorch-cu126", marker = "platform_system != 'Darwin'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
